@@ -1,21 +1,19 @@
 package controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import service.GarbageCollectionService;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/metrics/gc")
+@RequestMapping("/api/metrics")
 public class GCController {
 
-    private final GarbageCollectionService gcService;
+    @Autowired
+    private GarbageCollectionService garbageCollectionService;
 
-    public GCController(GarbageCollectionService gcService) {
-        this.gcService = gcService;
-    }
-
-    @GetMapping
-    public Map<String, Object> getCurrentGCMetrics() {
-        return gcService.getGarbageCollectionMetrics();
+    @GetMapping("/gc")
+    public Map<String, Object> getGarbageCollectionMetrics() {
+        return garbageCollectionService.getGarbageCollectionMetrics();
     }
 }

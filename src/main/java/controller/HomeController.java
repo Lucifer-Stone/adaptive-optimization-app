@@ -3,7 +3,7 @@ package com.example.adaptive.controller;
 import com.example.adaptive.service.CDNService;
 import com.example.adaptive.service.CacheService;
 import com.example.adaptive.service.ConnectionPoolService;
-import com.example.adaptive.service.GCService;
+// import com.example.adaptive.service.GCService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,13 +15,13 @@ public class HomeController {
 
     private final ConnectionPoolService connectionPoolService;
     private final CacheService cacheService;
-    private final GCService gcService;
+    // private final GCService gcService;
     private final CDNService cdnService;
 
-    public HomeController(ConnectionPoolService cps, CacheService cs, GCService gcs, CDNService cdns) {
+    public HomeController(ConnectionPoolService cps, CacheService cs, CDNService cdns) {	// GCService gcs
         this.connectionPoolService = cps;
         this.cacheService = cs;
-        this.gcService = gcs;
+        // this.gcService = gcs;
         this.cdnService = cdns;
     }
 
@@ -42,11 +42,11 @@ public class HomeController {
         return "Cache TTL for " + cacheName + " set to " + ttl + " seconds";
     }
 
-    @GetMapping("/tuneGC")
-    public String tuneGC(@RequestParam String type) {
+    /* @GetMapping("/tuneGC")
+     public String tuneGC(@RequestParam String type) {
         gcService.tuneGC(type);
         return "GC tuned to " + type;
-    }
+    } */
 
     @GetMapping("/cdnEdge")
     public String cdnEdge(@RequestParam String geo) {
